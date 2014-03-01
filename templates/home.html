@@ -3,8 +3,6 @@
 {% block content %}
 <h1>GitPop2</h1>
 
-<form action="" method="post">{% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn">Submit</button>
-</form>
+{% include "_pop_form.html" %}
+
 {% endblock content %}

@@ -7,6 +7,13 @@ from gitpop2.forms import PopForm
 
 
 def home(request):
+    form = PopForm() # An unbound form
+    data = {
+        'form': form,
+    }
+    return render(request, 'home.html', data)
+
+def pop_form(request):
     if request.method == 'POST': # If the form has been submitted...
         # ContactForm was defined in the the previous section
         form = PopForm(request.POST) # A form bound to the POST data
@@ -18,14 +25,13 @@ def home(request):
             repo = giturl.split('/')[-1]
             return HttpResponseRedirect(reverse('repo_pop',
                 kwargs = { 'owner': owner, 'repo': repo, } ))
-            return HttpResponseRedirect('/thanks/') # Redirect after POST
     else:
         form = PopForm() # An unbound form
     data = {
         'form': form,
     }
-    print "data:", data
     return render(request, 'home.html', data)
+
 
 # TODO: multiformat url, eg:
 #   - owner/repo
@@ -42,7 +48,9 @@ def repo_pop(request, owner, repo):
     url = 'https://api.github.com/repos/%s/%s/forks?sort=stargazers' % (owner, repo)
     content = urllib2.urlopen(url)
     forks = json.load(content)
+    form = PopForm() # An unbound form
     data = {
         'forks': forks,
+        'form': form,
     }
     return render(request, 'detail.html', data)
