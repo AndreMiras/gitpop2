@@ -1,10 +1,13 @@
 import json
 import urllib2
 from django.http import Http404
+from django.contrib import messages
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+from django.core.mail import send_mail
+from django.conf import settings
 from django.core.urlresolvers import reverse
-from gitpop2.forms import PopForm
+from django.http import HttpResponseRedirect
+from gitpop2.forms import PopForm, ContactForm
 
 
 def home(request):
@@ -34,11 +37,6 @@ def pop_form(request):
     return render(request, 'home.html', data)
 
 
-# TODO: multiformat url, eg:
-#   - owner/repo
-#   - https://github.com/owner/repo
-#   - https://github.com/django/django
-#   - https://github.com/netaustin/redmine_task_board
 # Sort table
 #   - http://stackoverflow.com/questions/12650735/how-can-i-make-table-being-capable-of-sorting-with-twitter-bootstrap
 def repo_pop(request, owner, repo):
@@ -58,3 +56,27 @@ def repo_pop(request, owner, repo):
         'form': form,
     }
     return render(request, 'detail.html', data)
+
+
+def contact(request):
+    if request.method == 'POST': # If the form has been submitted...
+        # ContactForm was defined in the the previous section
+        form = ContactForm(request.POST) # A form bound to the POST data
+        if form.is_valid(): # All validation rules pass
+            # Process the data in form.cleaned_data
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+            recipients = [tup[1] for tup in settings.MANAGERS]
+            if cc_myself:
+                recipients.append(sender)
+            send_mail(subject, message, sender, recipients)
+            messages.success(request, 'Message sent, redirecting to home page.')
+            return HttpResponseRedirect(reverse('home'))
+    else:
+        form = ContactForm()
+
+    return render(request, 'contact.html', {
+        'form': form,
+    })
