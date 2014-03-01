@@ -4,15 +4,15 @@
 
 {% include "_pop_form.html" %}
 
-{% if forks %}
 <hr>
+{% if forks %}
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-    <th><i class="fa fa-github-alt"></i> Repo</th>
-    <th><i class="fa fa-star"></i> Stars</th>
-    <th><i class="fa fa-eye"></i> Watchers</th>
-    <th><i class="fa fa-code-fork"></i> Forks</th>
+    <th class="span2"><i class="fa fa-github-alt"></i> Repo</th>
+    <th class="span2"><i class="fa fa-star"></i> Stars</th>
+    <th class="span2"><i class="fa fa-eye"></i> Watchers</th>
+    <th class="span2"><i class="fa fa-code-fork"></i> Forks</th>
     </tr>
   </thead>
   <tbody>
@@ -27,7 +27,7 @@
   </tbody>
 </table>
 {% else %}
-Sorry, no forks in this list.
+No forks for this repo.
 {% endif %}
 
 {% endblock content %}

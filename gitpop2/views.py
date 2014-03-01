@@ -50,7 +50,11 @@ def repo_pop(request, owner, repo):
     except urllib2.URLError as e:
         raise Http404
     forks = json.load(content)
-    form = PopForm() # An unbound form
+    giturl = "https://github.com/%s/%s" % (owner, repo)
+    initial = {
+        'giturl': giturl,
+    }
+    form = PopForm(initial=initial)
     data = {
         'forks': forks,
         'form': form,
