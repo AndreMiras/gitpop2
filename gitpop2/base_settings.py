@@ -66,7 +66,6 @@ ROOT_URLCONF = 'gitpop2.urls'
 
 WSGI_APPLICATION = 'gitpop2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
