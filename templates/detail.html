@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>GitPop2</h1>
+
+Forks:
+
+{% if forks %}
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+    <th>Repo</th>
+    <th>Stars</th>
+    <th>Watchers</th>
+    <th>Forks</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for fork in forks %}
+    <tr>
+    <td>{{ fork.full_name }}</td>
+    <td>{{ fork.stargazers_count }}</td>
+    <td>{{ fork.watchers_count }}</td>
+    <td>{{ fork.forks_count }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+Sorry, no forks in this list.
+{% endif %}
+
+{% endblock content %}
+
