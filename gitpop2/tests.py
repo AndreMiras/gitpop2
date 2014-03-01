@@ -17,6 +17,7 @@ class GitPop2Tests(TestCase):
 
     def test_repo_with_various_chars(self):
         """
+        Test repo with various chars by get method.
         - dash eg: django-nonrel/django
         - versions eg: SeanHayes/django-1.5
         """
@@ -33,3 +34,14 @@ class GitPop2Tests(TestCase):
         self.assertTrue("/SeanHayes/django-1.5/" in url)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
+
+    def test_not_existing_repo(self):
+        """
+        - Test form validation by post method.
+        """
+        data = {
+            'giturl': 'https://github.com/doesnotexist/doesnotexist'
+        }
+        url = reverse('pop_form')
+        resp = self.client.post(url, data, follow=True)
+        self.assertTrue("The GitHub URL does not exist." in resp.content)
