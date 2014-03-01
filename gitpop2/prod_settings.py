@@ -8,7 +8,7 @@ import dj_database_url
 DATABASES['default'] =  dj_database_url.config()
 
 ADMINS = (
-    (os.environ['ADMIN_NAME'], os.environ['ADMIN_EMAIL'])
+    (os.environ['ADMIN_NAME'], os.environ['ADMIN_EMAIL']),
 )
 
 MANAGERS = ADMINS
