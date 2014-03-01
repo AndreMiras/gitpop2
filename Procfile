@@ -1,1 +1,1 @@
-web: gunicorn gitpop2.wsgi
+web: newrelic-admin run-program gunicorn gitpop2.wsgi
