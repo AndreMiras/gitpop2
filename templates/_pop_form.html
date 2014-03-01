@@ -1,4 +1,11 @@
 <form action="{% url 'pop_form' %}" method="post">{% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" class="btn">Submit</button>
+  {{ form.non_field_errors }}
+  <div class="input-append">
+  {# { form.as_plain } #}
+  {% for field in form %}
+    {{ field.errors }}
+    {{ field }}
+  {% endfor %}
+  <button type="submit" class="btn">Go!</button>
+  </div>
 </form>
