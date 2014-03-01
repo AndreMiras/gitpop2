@@ -1,14 +1,16 @@
+import doctest
 import datetime
 from django.test import TestCase
 from django.test.client import Client
 from django.core.urlresolvers import reverse
+from gitpop2 import utils
 
 class GitPop2Tests(TestCase):
     """
     Tests for:
         - repos with various chars (eg. dash, number, dot)
-    TODO:
         - test for non existing repo
+    TODO:
         - test for repo with no fork
         - test for repo with lot of forks
     """
@@ -38,10 +40,24 @@ class GitPop2Tests(TestCase):
     def test_not_existing_repo(self):
         """
         - Test form validation by post method.
+        - Test directly in the URL.
         """
+        giturl = 'https://github.com/doesnotexist/doesnotexist'
+        # testing via form post
         data = {
-            'giturl': 'https://github.com/doesnotexist/doesnotexist'
+            'giturl': giturl,
         }
         url = reverse('pop_form')
         resp = self.client.post(url, data, follow=True)
-        self.assertTrue("The GitHub URL does not exist." in resp.content)
+        # the form validation should catch it
+        self.assertTrue("The provided GitHub URL does not exist." in resp.content)
+        # testing directly in the URL via get method
+        owner, repo = utils.parse_github_url(giturl)
+        url = reverse('repo_pop', kwargs = { 'owner': owner, 'repo': repo, } )
+        resp = self.client.get(url)
+        # it should not crash with a 500 error but raise a 404
+        self.assertEqual(resp.status_code, 404)
+
+def load_tests(loader, tests, ignore):
+    tests.addTests(doctest.DocTestSuite(utils))
+    return tests

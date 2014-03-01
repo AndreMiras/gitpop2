@@ -1,6 +1,7 @@
 import json
 import urllib2
-from django.shortcuts import render, get_object_or_404
+from django.http import Http404
+from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from gitpop2.forms import PopForm
@@ -46,7 +47,10 @@ def repo_pop(request, owner, repo):
     https://api.github.com/repos/netaustin/redmine_task_board/forks
     """
     url = 'https://api.github.com/repos/%s/%s/forks?sort=stargazers' % (owner, repo)
-    content = urllib2.urlopen(url)
+    try:
+        content = urllib2.urlopen(url)
+    except urllib2.URLError as e:
+        raise Http404
     forks = json.load(content)
     form = PopForm() # An unbound form
     data = {
