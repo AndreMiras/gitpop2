@@ -8,3 +8,4 @@ psycopg2==2.5.2
 pystache==0.5.3
 static==1.0.2
 wsgiref==0.1.2
+newrelic==2.14.0.11
