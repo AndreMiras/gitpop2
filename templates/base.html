@@ -43,7 +43,16 @@
     </div>
 
     <div class="container">
-
+      {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Well done!</strong> You successfully read this important alert message.
+        </div>
+        {% endfor %} {# message in messages #}
+      </div> <!-- messages -->
+      {% endif %}
       <h1>GitPop2</h1>
       <h4>Find the most popular fork on GitHub</h4>
       <hr>
