@@ -11,7 +11,7 @@ from gitpop2.forms import PopForm, ContactForm
 
 
 def home(request):
-    form = PopForm() # An unbound form
+    form = PopForm()
     data = {
         'form': form,
     }
@@ -30,33 +30,37 @@ def pop_form(request):
             return HttpResponseRedirect(reverse('repo_pop',
                 kwargs = { 'owner': owner, 'repo': repo, } ))
     else:
-        form = PopForm() # An unbound form
+        form = PopForm()
     data = {
         'form': form,
     }
     return render(request, 'home.html', data)
 
 
-# Sort table
-#   - http://stackoverflow.com/questions/12650735/how-can-i-make-table-being-capable-of-sorting-with-twitter-bootstrap
 def repo_pop(request, owner, repo):
     """
     GET /repos/:owner/:repo/forks
     https://api.github.com/repos/netaustin/redmine_task_board/forks
     """
-    url = 'https://api.github.com/repos/%s/%s/forks?sort=stargazers&per_page=100' % (owner, repo)
+    src_repo_url = "https://api.github.com/repos/%s/%s" % (owner, repo)
+    forks_url = src_repo_url + "/forks?sort=stargazers&per_page=100"
     try:
-        content = urllib2.urlopen(url)
+        src_repo_json = urllib2.urlopen(src_repo_url)
+        forks_json = urllib2.urlopen(forks_url)
     except urllib2.URLError as e:
         raise Http404
-    forks = json.load(content)
+    src_repo = json.load(src_repo_json)
+    forks = json.load(forks_json)
+    repos = forks + [src_repo]
+    # sorts src_repo with forks
+    repos.sort(key = lambda x: x['stargazers_count'], reverse=True)
     giturl = "https://github.com/%s/%s" % (owner, repo)
     initial = {
         'giturl': giturl,
     }
     form = PopForm(initial=initial)
     data = {
-        'forks': forks,
+        'repos': repos,
         'form': form,
     }
     return render(request, 'detail.html', data)
