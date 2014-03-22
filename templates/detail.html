@@ -17,7 +17,6 @@
     <tr>
     <th class="span2"><i class="fa fa-github-alt"></i> Repo</th>
     <th class="span2"><i class="fa fa-star"></i> Stars</th>
-    <th class="span2"><i class="fa fa-eye"></i> Watchers</th>
     <th class="span2"><i class="fa fa-code-fork"></i> Forks</th>
     <th class="span2"><i class="fa fa-refresh"></i> Update</th>
     </tr>
@@ -35,7 +34,6 @@
     </div>
     </td>
     <td>{{ repo.stargazers_count }}</td>
-    <td>{{ repo.watchers_count }}</td>
     <td>{{ repo.forks_count }}</td>
     {% with updated_at=repo.updated_at|parse_date:"%Y-%m-%dT%H:%M:%SZ" %}
     <td sorttable_customkey="{{ updated_at|date:"%Y%m%d_%H%M%S" }}">
