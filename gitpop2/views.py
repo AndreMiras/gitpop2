@@ -44,7 +44,7 @@ def repo_pop(request, owner, repo):
     GET /repos/:owner/:repo/forks
     https://api.github.com/repos/netaustin/redmine_task_board/forks
     """
-    url = 'https://api.github.com/repos/%s/%s/forks?sort=stargazers' % (owner, repo)
+    url = 'https://api.github.com/repos/%s/%s/forks?sort=stargazers&per_page=100' % (owner, repo)
     try:
         content = urllib2.urlopen(url)
     except urllib2.URLError as e:
