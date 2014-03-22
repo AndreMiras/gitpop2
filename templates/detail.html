@@ -18,7 +18,15 @@
   <tbody>
     {% for fork in forks %}
     <tr>
-    <td><a href="{% url 'repo_pop' fork.owner.login fork.name %}">{{ fork.full_name }}</a></td>
+    <td>
+    <div class="dropdown">
+      <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">{{ fork.full_name }} <b class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <li><a tabindex="-1" href="{% url 'repo_pop' fork.owner.login fork.name %}">View on GitPop</a></li>
+        <li><a tabindex="-1" href="https://github.com/{{ fork.full_name }}">View on GitHub</a></li>
+      </ul>
+    </div>
+    </td>
     <td>{{ fork.stargazers_count }}</td>
     <td>{{ fork.watchers_count }}</td>
     <td>{{ fork.forks_count }}</td>
