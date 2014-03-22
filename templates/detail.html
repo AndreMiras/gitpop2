@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% load static from staticfiles %}
 {% load humanize %}
 {% load gitpop2_extras %}
+
+{% block extrajs %}
+<script src="{% static 'js/sorttable.js' %}"></script>
+{% endblock extrajs %}
 
 {% block content %}
 
@@ -8,7 +13,7 @@
 
 <hr>
 {% if forks %}
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover sortable">
   <thead>
     <tr>
     <th class="span2"><i class="fa fa-github-alt"></i> Repo</th>
@@ -33,7 +38,10 @@
     <td>{{ fork.stargazers_count }}</td>
     <td>{{ fork.watchers_count }}</td>
     <td>{{ fork.forks_count }}</td>
-    <td>{{ fork.updated_at|parse_date:"%Y-%m-%dT%H:%M:%SZ"|naturaltime }}</td>
+    {% with updated_at=fork.updated_at|parse_date:"%Y-%m-%dT%H:%M:%SZ" %}
+    <td sorttable_customkey="{{ updated_at|date:"%Y%m%d_%H%M%S" }}">
+    {{ updated_at|naturaltime }}</td>
+    {% endwith %}
     </tr>
     {% endfor %}
   </tbody>
