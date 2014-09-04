@@ -10,3 +10,20 @@ GitPop2 helps you choose a fork when a project goes unmaintained. It allows you 
 
 This project actually started as a "fork" of [jpmckinney/gitpop](https://github.com/jpmckinney/gitpop), because the site running the project went down in March 2014.
 It's not a fork as defined by GitHub because it was started from scratch using a different web framework.
+
+Install
+--------------
+```
+pip install -r requirements.txt
+```
+
+Run
+--------------
+With Gunicorn WSGI server:
+```
+gunicorn gitpop2.wsgi
+```
+With Django development server:
+```
+python manage.py runserver
+```
