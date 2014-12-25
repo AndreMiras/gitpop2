@@ -5,7 +5,7 @@ class PopForm(forms.Form):
     giturl = forms.URLField(
         widget=forms.TextInput(attrs={
             'placeholder': 'https://github.com/django/django',
-            'class': 'input-xlarge',
+            'class': 'form-control',
             }))
 
     def clean_giturl(self):
