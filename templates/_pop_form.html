@@ -1,7 +1,8 @@
 <form action="{% url 'pop_form' %}" method="post">{% csrf_token %}
   {{ form.non_field_errors }}
 
-  <div class="input-group">
+  <div class="input-group input-group-lg">
+    <div class="input-group-addon"><i class="fa fa-github"></i></div>
     {% for field in form %}
       {{ field.errors }}
       {{ field }}
