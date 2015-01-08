@@ -14,6 +14,10 @@ h2.baseline {
 font-size: 15px;
 }
 
+.div-inline {
+display: inline-block;
+}
+
 /*
  * http://www.kryogenix.org/code/browser/sorttable/#symbolsbeforesorting
  */
