@@ -1,15 +1,16 @@
 <form action="{% url 'pop_form' %}" method="post">{% csrf_token %}
   {{ form.non_field_errors }}
 
+  {% with form.giturl as field %}
+  {{ field.errors.as_text }}
   <div class="input-group input-group-lg">
-    <div class="input-group-addon"><i class="fa fa-github"></i></div>
-    {% for field in form %}
-      {{ field.errors }}
-      {{ field }}
-    {% endfor %}
-
+    <div class="input-group-addon">
+      <i class="fa fa-github"></i>
+    </div>
+    {{ field }}
     <span class="input-group-btn">
       <button type="submit" class="btn btn-default">Go!</button>
     </span>
   </div>
+  {% endwith %}
 </form>
