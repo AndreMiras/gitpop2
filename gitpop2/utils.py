@@ -8,7 +8,7 @@ def parse_github_url(url):
     >>> repo
     'liquidprompt'
     """
-    url = url.strip('/') # removes trailing slash
-    owner = url.split('/')[-2]
-    repo = url.split('/')[-1]
+    url = url.strip("/")  # removes trailing slash
+    owner = url.split("/")[-2]
+    repo = url.split("/")[-1]
     return owner, repo

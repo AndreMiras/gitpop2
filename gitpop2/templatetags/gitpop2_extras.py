@@ -1,9 +1,11 @@
 import datetime
+from contextlib import suppress
 
 from django.template import Library
 from django.template.defaultfilters import stringfilter
 
 register = Library()
+
 
 @stringfilter
 def parse_date(date_string, format):
@@ -15,9 +17,8 @@ def parse_date(date_string, format):
         {{ "01/01/1970"|parse_date:"%m/%d/%Y"|date:"F jS, Y" }}
 
     """
-    try:
+    with suppress(ValueError):
         return datetime.datetime.strptime(date_string, format)
-    except ValueError:
-        return None
+
 
 register.filter(parse_date)
