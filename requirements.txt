@@ -6,4 +6,5 @@ flake8
 gunicorn==20.0.4
 isort
 psycopg2-binary==2.8.5
+pytest-django
 static==1.1.1

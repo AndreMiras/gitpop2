@@ -12,7 +12,7 @@ PYTEST=$(VIRTUAL_ENV)/bin/pytest
 GUNICORN=$(VIRTUAL_ENV)/bin/gunicorn
 DOCKER_IMAGE=andremiras/gitpop2
 PORT?=8000
-SOURCES=gitpop2/
+SOURCES=gitpop2/ tests/
 ifndef CI
 DOCKER_IT=-it
 endif
@@ -30,7 +30,7 @@ clean:
 	rm -rf venv/ .pytest_cache/
 
 unittest: virtualenv
-	$(PYTHON) manage.py test --settings=gitpop2.dev_settings gitpop2
+	$(PYTEST) tests/
 
 lint/isort: virtualenv
 	$(ISORT) --check-only --diff --recursive $(SOURCES)
