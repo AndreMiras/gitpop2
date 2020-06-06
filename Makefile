@@ -11,7 +11,7 @@ BLACK=$(VIRTUAL_ENV)/bin/black
 PYTEST=$(VIRTUAL_ENV)/bin/pytest
 GUNICORN=$(VIRTUAL_ENV)/bin/gunicorn
 DOCKER_IMAGE=andremiras/gitpop2
-DOCKER_PORT=8000
+PORT?=8000
 SOURCES=gitpop2/
 ifndef CI
 DOCKER_IT=-it
@@ -71,11 +71,11 @@ docker/run/make/%:
 docker/run/test: docker/run/make/test
 
 docker/run/app:
-	docker run --env-file .env --env PORT=$(DOCKER_PORT) --publish $(DOCKER_PORT):$(DOCKER_PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
+	docker run --env-file .env --env PORT=$(PORT) --publish $(PORT):$(PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
 
 docker/run/app/production:
 	PRODUCTION=1 DJANGO_SECRET_KEY=1 \
-	docker run --env-file .env --env PORT=$(DOCKER_PORT) --publish $(DOCKER_PORT):$(DOCKER_PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
+	docker run --env-file .env --env PORT=$(PORT) --publish $(PORT):$(PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
 
 docker/run/shell:
 	docker run --env-file .env $(DOCKER_IT) --rm $(DOCKER_IMAGE) /bin/bash
