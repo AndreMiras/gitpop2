@@ -1,0 +1,10 @@
+build:
+  docker:
+    web: Dockerfile
+release:
+  image: web
+  # doesn't seem to be picked up, so running the same in the run.web
+  command:
+    - make run/collectstatic
+run:
+  web: make run/collectstatic && make run/gunicorn
