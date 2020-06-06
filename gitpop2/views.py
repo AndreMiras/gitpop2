@@ -1,5 +1,6 @@
 import json
-import urllib2
+from urllib.error import URLError
+from urllib.request import urlopen
 from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import render
@@ -44,9 +45,9 @@ def repo_pop(request, owner, repo):
     src_repo_url = "https://api.github.com/repos/%s/%s" % (owner, repo)
     forks_url = src_repo_url + "/forks?sort=stargazers&per_page=100"
     try:
-        src_repo_json = urllib2.urlopen(src_repo_url)
-        forks_json = urllib2.urlopen(forks_url)
-    except urllib2.URLError as e:
+        src_repo_json = urlopen(src_repo_url)
+        forks_json = urlopen(forks_url)
+    except URLError as e:
         raise Http404
     src_repo = json.load(src_repo_json)
     forks = json.load(forks_json)

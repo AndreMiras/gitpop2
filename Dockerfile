@@ -7,7 +7,7 @@
 # Or for interactive shell:
 #     docker run -it --rm andremiras/gitpop2
 
-FROM python:2.7-slim
+FROM python:3.7-slim
 
 ENV USER="user"
 ENV HOME_DIR="/home/${USER}"
@@ -19,7 +19,6 @@ RUN apt update -qq > /dev/null && apt --yes install -qq --no-install-recommends 
     curl \
     locales \
     make \
-    python-virtualenv \
     sudo \
     && locale-gen en_US.UTF-8 \
     && apt --yes autoremove && apt --yes clean

@@ -50,7 +50,7 @@ class GitPop2Tests(TestCase):
         url = reverse('pop_form')
         resp = self.client.post(url, data, follow=True)
         # the form validation should catch it
-        self.assertTrue("The provided GitHub URL does not exist." in resp.content)
+        self.assertTrue(b"The provided GitHub URL does not exist." in resp.content)
         # testing directly in the URL via get method
         owner, repo = utils.parse_github_url(giturl)
         url = reverse('repo_pop', kwargs = { 'owner': owner, 'repo': repo, } )

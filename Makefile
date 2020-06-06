@@ -1,6 +1,6 @@
 VIRTUAL_ENV?=venv
 PIP=$(VIRTUAL_ENV)/bin/pip
-PYTHON_MAJOR_VERSION=2
+PYTHON_MAJOR_VERSION=3
 PYTHON_MINOR_VERSION=7
 PYTHON_VERSION=$(PYTHON_MAJOR_VERSION).$(PYTHON_MINOR_VERSION)
 PYTHON_WITH_VERSION=python$(PYTHON_VERSION)
@@ -21,7 +21,7 @@ endif
 all: virtualenv
 
 $(VIRTUAL_ENV):
-	python /usr/lib/python2.7/dist-packages/virtualenv.py $(VIRTUAL_ENV)
+	$(PYTHON_WITH_VERSION) -m venv $(VIRTUAL_ENV)
 	$(PIP) install --upgrade --requirement requirements.txt
 
 virtualenv: $(VIRTUAL_ENV)

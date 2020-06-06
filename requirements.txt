@@ -1,10 +1,9 @@
 Django==1.11.29
 dj-database-url==0.2.2
-dj-static==0.0.5
+dj-static==0.0.6
 django-toolbelt==0.0.1
 gunicorn==19.9.0
 honcho==0.5.0
 psycopg2==2.7.5
 pystache==0.5.3
-static==1.0.2
-wsgiref==0.1.2
+static==1.1.1
