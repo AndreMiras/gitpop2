@@ -27,24 +27,24 @@ virtualenv: $(VIRTUAL_ENV)
 clean:
 	rm -rf venv/ .pytest_cache/
 
-unittest: virtualenv/test
-	$(PYTEST) tests/
+unittest: virtualenv
+	$(PYTHON) manage.py test --settings=gitpop2.dev_settings gitpop2
 
-lint/isort: virtualenv/test
+lint/isort: virtualenv
 	$(ISORT) --check-only --diff --recursive $(SOURCES)
 
-lint/flake8: virtualenv/test
+lint/flake8: virtualenv
 	$(FLAKE8) $(SOURCES)
 
-lint/black: virtualenv/test
+lint/black: virtualenv
 	$(BLACK) --check $(SOURCES)
 
 lint: lint/isort lint/flake8 lint/black
 
-format/isort: virtualenv/test
+format/isort: virtualenv
 	$(ISORT) --recursive $(SOURCES)
 
-format/black: virtualenv/test
+format/black: virtualenv
 	$(BLACK) $(SOURCES)
 
 format: format/isort format/black
