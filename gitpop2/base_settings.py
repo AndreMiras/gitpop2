@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -22,19 +23,12 @@ SECRET_KEY = '13(u$ti2-&1+49e3k_*uxdzdp7q!pk980f4ll*8p!#l4+#ez$u'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-
-TEMPLATE_DIRS = (
-    os.path.normpath(os.path.join(BASE_DIR, 'templates/')),
-)
-
 # Application definition
 
-INSTALLED_APPS = (
+DJANGO_CORE_APP = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,11 +36,17 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+)
 
+THIRDPARTY_APP = ()
+
+CUSTOM_APPS = (
     'gitpop2',
 )
 
-MIDDLEWARE_CLASSES = (
+INSTALLED_APPS = DJANGO_CORE_APP + THIRDPARTY_APP + CUSTOM_APPS
+
+MIDDLEWARE = (
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +54,26 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+TEMPLATES = (
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": (os.path.normpath(os.path.join(BASE_DIR, "templates")),),
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": (
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.template.context_processors.tz",
+                "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",
+            ),
+        },
+    },
 )
 
 ROOT_URLCONF = 'gitpop2.urls'

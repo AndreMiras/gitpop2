@@ -19,8 +19,8 @@ RUN apt update -qq > /dev/null && apt --yes install -qq --no-install-recommends 
     curl \
     locales \
     make \
-    sudo \
     python-virtualenv \
+    sudo \
     && locale-gen en_US.UTF-8 \
     && apt --yes autoremove && apt --yes clean
 
