@@ -32,9 +32,7 @@ class ContactForm(forms.Form):
     cc_myself = forms.BooleanField(required=False)
 
     def __init__(self, *args, **kwargs):
-        """
-        Adds Twitter Bootstrap 3 "form-control" class.
-        """
-        super(ContactForm, self).__init__(*args, **kwargs)
+        """Adds Twitter Bootstrap 3 "form-control" class."""
+        super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs["class"] = "form-control"
