@@ -5,9 +5,9 @@ from urllib.request import urlopen
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import send_mail
-from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from gitpop2.forms import ContactForm, PopForm
 

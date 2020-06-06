@@ -1,5 +1,6 @@
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
+from django.urls import path
 
 from gitpop2.views import contact, home, pop_form, repo_pop
 
@@ -10,5 +11,5 @@ urlpatterns = (
     url(r"^pop_form/$", pop_form, name="pop_form"),
     url(r"^contact/$", contact, name="contact"),
     url(r"^(?P<owner>[-\w.]+)/(?P<repo>[-\w.]+)$", repo_pop, name="repo_pop"),
-    url(r"^admin/", include(admin.site.urls)),
+    path("admin/", admin.site.urls),
 )
