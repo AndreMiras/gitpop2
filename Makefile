@@ -25,7 +25,6 @@ $(VIRTUAL_ENV):
 	$(PIP) install --upgrade --requirement requirements.txt
 
 virtualenv: $(VIRTUAL_ENV)
-	$(PIP) install --upgrade --requirement requirements.txt
 
 clean:
 	rm -rf venv/ .pytest_cache/
