@@ -51,8 +51,7 @@ format/black: virtualenv
 
 format: format/isort format/black
 
-# test: unittest lint
-test: unittest
+test: unittest lint
 
 run/collectstatic: virtualenv
 	$(PYTHON) manage.py collectstatic --noinput

@@ -1,3 +1,4 @@
+black
 Django==1.11.29
 dj-database-url<0.6
 dj-static==0.0.6

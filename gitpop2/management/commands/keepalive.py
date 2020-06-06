@@ -1,6 +1,8 @@
 import os
 from urllib.request import urlopen
+
 from django.core.management.base import NoArgsCommand
+
 
 class Command(NoArgsCommand):
     help = 'Pings os.environ["HOSTNAME"] to keep dyno alive.'
