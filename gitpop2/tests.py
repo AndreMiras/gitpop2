@@ -26,14 +26,14 @@ class GitPop2Tests(TestCase):
         full_name = "django-nonrel/django"
         owner, repo = full_name.split('/')
         url = reverse('repo_pop', kwargs = { 'owner': owner, 'repo': repo, } )
-        self.assertTrue("/django-nonrel/django/" in url)
+        self.assertTrue("/django-nonrel/django" in url)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
 
         full_name = "SeanHayes/django-1.5"
         owner, repo = full_name.split('/')
         url = reverse('repo_pop', kwargs = { 'owner': owner, 'repo': repo, } )
-        self.assertTrue("/SeanHayes/django-1.5/" in url)
+        self.assertTrue("/SeanHayes/django-1.5" in url)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, 200)
 
