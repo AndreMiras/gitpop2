@@ -1,12 +1,13 @@
 import doctest
 
-from django.test import TestCase
+import pytest
+from django.test import Client
 from django.urls import reverse
 
 from gitpop2 import utils
 
 
-class GitPop2Tests(TestCase):
+class TestGitPop2:
     """
     Tests for:
         - repos with various chars (eg. dash, number, dot)
@@ -16,23 +17,25 @@ class GitPop2Tests(TestCase):
         - test for repo with lot of forks
     """
 
-    def test_repo_with_various_chars(self):
+    def setup_method(self):
+        self.client = Client()
+
+    @pytest.mark.parametrize(
+        "full_name",
+        (
+            # - dash eg: django-nonrel/django
+            "django-nonrel/django",
+            # - versions eg: SeanHayes/django-1.5
+            "SeanHayes/django-1.5",
+        ),
+    )
+    def test_repo_with_various_chars(self, full_name):
         """
         Test repo with various chars by get method.
-        - dash eg: django-nonrel/django
-        - versions eg: SeanHayes/django-1.5
         """
-        full_name = "django-nonrel/django"
         owner, repo = full_name.split("/")
         url = reverse("repo_pop", kwargs={"owner": owner, "repo": repo})
-        assert "/django-nonrel/django" in url
-        resp = self.client.get(url)
-        assert resp.status_code == 200
-
-        full_name = "SeanHayes/django-1.5"
-        owner, repo = full_name.split("/")
-        url = reverse("repo_pop", kwargs={"owner": owner, "repo": repo})
-        assert "/SeanHayes/django-1.5" in url
+        assert full_name in url
         resp = self.client.get(url)
         assert resp.status_code == 200
 
