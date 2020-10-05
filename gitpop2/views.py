@@ -1,5 +1,6 @@
 import json
 from urllib.error import URLError
+from urllib.parse import urlencode
 from urllib.request import urlopen
 
 from django.conf import settings
@@ -45,8 +46,9 @@ def repo_pop(request, owner, repo):
     GET /repos/:owner/:repo/forks
     https://api.github.com/repos/netaustin/redmine_task_board/forks
     """
-    src_repo_url = "https://api.github.com/repos/%s/%s" % (owner, repo)
-    forks_url = src_repo_url + "/forks?sort=stargazers&per_page=100"
+    src_repo_url = f"https://api.github.com/repos/{owner}/{repo}"
+    params = {"sort": "stargazers", "per_page": 100}
+    forks_url = src_repo_url + "/forks" + "?" + urlencode(params)
     try:
         src_repo_json = urlopen(src_repo_url)
         forks_json = urlopen(forks_url)
