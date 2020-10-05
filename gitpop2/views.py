@@ -58,7 +58,9 @@ def repo_pop(request, owner, repo):
     forks = json.load(forks_json)
     repos = forks + [src_repo]
     # sorts src_repo with forks
-    repos.sort(key=lambda x: x["stargazers_count"], reverse=True)
+    sorted(repos, key=lambda x: x["stargazers_count"], reverse=True)
+    # pops repos with missing owner
+    repos = list(filter(lambda repo: repo["owner"], repos))
     giturl = "https://github.com/%s/%s" % (owner, repo)
     initial = {
         "giturl": giturl,
