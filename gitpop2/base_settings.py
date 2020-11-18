@@ -29,7 +29,6 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 DJANGO_CORE_APP = (
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
