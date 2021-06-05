@@ -1,5 +1,5 @@
 black
-Django==3.1.8
+Django==3.1.9
 dj-database-url<0.6
 dj-static==0.0.6
 flake8
