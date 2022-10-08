@@ -1,15 +1,11 @@
-from django.conf.urls import url
-from django.contrib import admin
-from django.urls import path
+from django.urls import re_path
 
-from gitpop2.views import contact, home, pop_form, repo_pop
-
-admin.autodiscover()
+from gitpop2.views import home, pop_form, repo_pop
 
 urlpatterns = (
-    url(r"^$", home, name="home"),
-    url(r"^pop_form/$", pop_form, name="pop_form"),
-    url(r"^contact/$", contact, name="contact"),
-    url(r"^(?P<owner>[-\w.]+)/(?P<repo>[-\w.]+)$", repo_pop, name="repo_pop"),
-    path("admin/", admin.site.urls),
+    re_path(r"^$", home, name="home"),
+    re_path(r"^pop_form/$", pop_form, name="pop_form"),
+    re_path(
+        r"^(?P<owner>[-\w.]+)/(?P<repo>[-\w.]+)$", repo_pop, name="repo_pop"
+    ),
 )

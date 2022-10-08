@@ -23,16 +23,3 @@ class PopForm(forms.Form):
                 "The provided GitHub URL does not exist."
             )
         return data
-
-
-class ContactForm(forms.Form):
-    subject = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
-    sender = forms.EmailField()
-    cc_myself = forms.BooleanField(required=False)
-
-    def __init__(self, *args, **kwargs):
-        """Adds Twitter Bootstrap 3 "form-control" class."""
-        super().__init__(*args, **kwargs)
-        for field_name, field in self.fields.items():
-            field.widget.attrs["class"] = "form-control"
