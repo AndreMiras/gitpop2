@@ -15,15 +15,15 @@ It's not a fork as defined by GitHub because it was started from scratch using a
 
 ## Install
 ```sh
-pip install -r requirements.txt
+make virtualenv
 ```
 
 ## Run
 With Gunicorn WSGI server:
 ```sh
-gunicorn gitpop2.wsgi
+make run/gunicorn
 ```
 With Django development server:
 ```sh
-python manage.py runserver
+make run/dev
 ```

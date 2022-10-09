@@ -1,5 +1,6 @@
 VIRTUAL_ENV?=venv
 PIP=$(VIRTUAL_ENV)/bin/pip
+PIP_COMPILE=$(VIRTUAL_ENV)/bin/pip-compile
 PYTHON_MAJOR_VERSION=3
 PYTHON_MINOR_VERSION=8
 PYTHON_VERSION=$(PYTHON_MAJOR_VERSION).$(PYTHON_MINOR_VERSION)
@@ -22,9 +23,14 @@ all: virtualenv
 
 $(VIRTUAL_ENV):
 	$(PYTHON_WITH_VERSION) -m venv $(VIRTUAL_ENV)
-	$(PIP) install --upgrade --requirement requirements.txt
+	$(PYTHON) -m pip install --upgrade pip setuptools
 
 virtualenv: $(VIRTUAL_ENV)
+	$(PIP) install --requirement requirements.txt
+
+requirements.txt: | $(VIRTUAL_ENV)
+	$(PYTHON) -m pip install --upgrade pip-tools
+	$(PIP_COMPILE) --upgrade --output-file requirements.txt requirements.in
 
 clean:
 	rm -rf venv/ .pytest_cache/
@@ -58,6 +64,9 @@ run/collectstatic: virtualenv
 
 run/migrate: virtualenv
 	$(PYTHON) manage.py migrate --noinput
+
+run/dev: virtualenv
+	$(PYTHON) manage.py runserver
 
 run/gunicorn: virtualenv
 	$(GUNICORN) gitpop2.wsgi:application --bind 0.0.0.0:$(PORT)
