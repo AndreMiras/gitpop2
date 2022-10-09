@@ -16,11 +16,11 @@ dj-database-url==0.5.0
     # via -r requirements.in
 dj-static==0.0.6
     # via -r requirements.in
-django==3.1.13
+django==3.1.14
     # via -r requirements.in
 flake8==5.0.4
     # via -r requirements.in
-gunicorn==20.0.4
+gunicorn==20.1.0
     # via -r requirements.in
 iniconfig==1.1.1
     # via pytest
@@ -38,7 +38,7 @@ platformdirs==2.5.2
     # via black
 pluggy==1.0.0
     # via pytest
-psycopg2-binary==2.8.5
+psycopg2-binary==2.9.4
     # via -r requirements.in
 py==1.11.0
     # via pytest
