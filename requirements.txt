@@ -16,7 +16,7 @@ dj-database-url==0.5.0
     # via -r requirements.in
 dj-static==0.0.6
     # via -r requirements.in
-django==3.1.13
+django==3.1.14
     # via -r requirements.in
 flake8==5.0.4
     # via -r requirements.in
@@ -66,8 +66,6 @@ tomli==2.0.1
     # via
     #   black
     #   pytest
-typing-extensions==4.4.0
-    # via black
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
