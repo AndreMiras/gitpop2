@@ -1,8 +1,0 @@
-mkdir -p ~/.bin/ && cd $_
-# This comes from https://toolbelt.heroku.com/standalone
-wget https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
-tar -xvzf heroku-client.tgz
-echo 'export PATH="${PATH}:~/.bin/heroku-client/bin/"' >> ~/.bashrc
-
-# And using honcho rather than foreman
-pip install honcho

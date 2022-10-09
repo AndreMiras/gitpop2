@@ -1,6 +1,6 @@
 # GitPop2
 
-Find the most popular fork on GitHub <http://gitpop2.herokuapp.com/>
+Find the most popular fork on GitHub <http://gitpop2.vercel.app/>
 
 See <https://andremiras.github.io/gitpop3/> ([AndreMiras/gitpop3](https://github.com/AndreMiras/gitpop3)) for a rewrite using ReactJS.
 
