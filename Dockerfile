@@ -21,7 +21,9 @@ RUN apt update -qq > /dev/null && apt --yes install -qq --no-install-recommends 
     make \
     sudo \
     && locale-gen en_US.UTF-8 \
-    && apt --yes autoremove && apt --yes clean
+    && apt --yes autoremove \
+    && apt --yes clean \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV LANG="en_US.UTF-8" \
     LANGUAGE="en_US.UTF-8" \
@@ -41,4 +43,4 @@ USER ${USER}
 # setup virtualenv
 RUN make virtualenv
 
-CMD venv/bin/gunicorn gitpop2.wsgi:application --bind 0.0.0.0:$PORT
+CMD venv/bin/gunicorn gitpop2.wsgi:application --bind "0.0.0.0:$PORT"
