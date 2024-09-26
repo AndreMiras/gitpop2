@@ -75,16 +75,16 @@ docker/build:
 	docker build --tag=$(DOCKER_IMAGE) .
 
 docker/run/make/%:
-	docker run --env-file .env $(DOCKER_IT) --rm $(DOCKER_IMAGE) make $*
+	docker run --env-file .env.example $(DOCKER_IT) --rm $(DOCKER_IMAGE) make $*
 
 docker/run/test: docker/run/make/test
 
 docker/run/app:
-	docker run --env-file .env --env PORT=$(PORT) --publish $(PORT):$(PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
+	docker run --env-file .env.example --env PORT=$(PORT) --publish $(PORT):$(PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
 
 docker/run/app/production:
 	PRODUCTION=1 DJANGO_SECRET_KEY=1 \
-	docker run --env-file .env --env PORT=$(PORT) --publish $(PORT):$(PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
+	docker run --env-file .env.example --env PORT=$(PORT) --publish $(PORT):$(PORT) $(DOCKER_IT) --rm $(DOCKER_IMAGE)
 
 docker/run/shell:
-	docker run --env-file .env $(DOCKER_IT) --rm $(DOCKER_IMAGE) /bin/bash
+	docker run --env-file .env.example $(DOCKER_IT) --rm $(DOCKER_IMAGE) /bin/bash
