@@ -1,5 +1,5 @@
 black
-Django<4
+Django<5
 dj-static
 flake8
 gunicorn

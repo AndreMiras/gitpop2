@@ -12,7 +12,7 @@ click==8.1.7
     # via black
 dj-static==0.0.6
     # via -r requirements.in
-django==3.2.25
+django==4.2.17
     # via -r requirements.in
 flake8==7.1.1
     # via -r requirements.in
@@ -47,8 +47,6 @@ pytest==8.3.4
     # via pytest-django
 pytest-django==4.9.0
     # via -r requirements.in
-pytz==2024.2
-    # via django
 sqlparse==0.5.3
     # via django
 static==1.1.1
