@@ -52,14 +52,18 @@ pytest-django==4.5.2
     # via -r requirements.in
 pytz==2022.4
     # via django
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via django
 static==1.1.1
     # via -r requirements.in
 static3==0.7.0
     # via dj-static
 tomli==2.0.1
-    # via pytest
+    # via
+    #   black
+    #   pytest
+typing-extensions==4.12.2
+    # via black
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
