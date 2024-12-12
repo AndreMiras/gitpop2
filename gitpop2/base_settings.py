@@ -72,6 +72,11 @@ TEMPLATES = (
     },
 )
 
+# RemovedInDjango60Warning: It's a transitional setting helpful in early
+# adoption of "https" as the new default value of forms.URLField.assume_scheme.
+# Set to True to assume "https" during the Django 5.x release cycle.
+FORMS_URLFIELD_ASSUME_HTTPS = True
+
 ROOT_URLCONF = "gitpop2.urls"
 
 WSGI_APPLICATION = "gitpop2.wsgi.application"
