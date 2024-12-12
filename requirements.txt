@@ -52,7 +52,7 @@ pytest-django==4.5.2
     # via -r requirements.in
 pytz==2022.4
     # via django
-sqlparse==0.4.4
+sqlparse==0.5.0
     # via django
 static==1.1.1
     # via -r requirements.in
