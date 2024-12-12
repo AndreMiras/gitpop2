@@ -7,7 +7,7 @@
     {
       "src": "gitpop2/wsgi.py",
       "use": "@vercel/python",
-      "config": { "maxLambdaSize": "30mb", "runtime": "python3.9" }
+      "config": { "maxLambdaSize": "30mb", "runtime": "python3.12" }
     },
     {
       "src": "build_files.sh",

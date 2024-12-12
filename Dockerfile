@@ -7,7 +7,7 @@
 # Or for interactive shell:
 #     docker run -it --rm andremiras/gitpop2
 
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 ENV USER="user"
 ENV HOME_DIR="/home/${USER}"

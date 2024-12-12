@@ -16,7 +16,7 @@ dj-static==0.0.6
     # via -r requirements.in
 django==3.1.14
     # via -r requirements.in
-flake8==5.0.4
+flake8==7.1.1
     # via -r requirements.in
 gunicorn==20.1.0
     # via -r requirements.in
@@ -40,9 +40,9 @@ pluggy==1.0.0
     # via pytest
 py==1.11.0
     # via pytest
-pycodestyle==2.9.1
+pycodestyle==2.12.0
     # via flake8
-pyflakes==2.5.0
+pyflakes==3.2.0
     # via flake8
 pystache==0.6.0
     # via static
