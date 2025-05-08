@@ -12,7 +12,7 @@ click==8.1.7
     # via black
 dj-static==0.0.6
     # via -r requirements.in
-django==5.1.8
+django==5.1.9
     # via -r requirements.in
 flake8==7.1.1
     # via -r requirements.in
