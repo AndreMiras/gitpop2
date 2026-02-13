@@ -47,7 +47,7 @@ pytest==8.3.4
     # via pytest-django
 pytest-django==4.9.0
     # via -r requirements.in
-sqlparse==0.5.3
+sqlparse==0.5.4
     # via django
 static==1.1.1
     # via -r requirements.in
