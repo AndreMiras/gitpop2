@@ -6,7 +6,7 @@
 #
 asgiref==3.8.1
     # via django
-black==24.10.0
+black==26.3.1
     # via -r requirements.in
 click==8.1.7
     # via black
@@ -31,7 +31,7 @@ packaging==24.2
     #   black
     #   gunicorn
     #   pytest
-pathspec==0.12.1
+pathspec==1.0.4
     # via black
 platformdirs==4.3.6
     # via black
@@ -47,6 +47,8 @@ pytest==8.3.4
     # via pytest-django
 pytest-django==4.9.0
     # via -r requirements.in
+pytokens==0.4.1
+    # via black
 sqlparse==0.5.3
     # via django
 static==1.1.1
