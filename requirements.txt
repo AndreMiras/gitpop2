@@ -41,9 +41,11 @@ pycodestyle==2.12.1
     # via flake8
 pyflakes==3.2.0
     # via flake8
+pygments==2.20.0
+    # via pytest
 pystache==0.6.6
     # via static
-pytest==8.3.4
+pytest==9.0.3
     # via pytest-django
 pytest-django==4.9.0
     # via -r requirements.in
